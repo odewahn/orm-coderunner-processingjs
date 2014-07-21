@@ -1,5 +1,3 @@
-/* The console container element */
-
 .coderunner {
    width: 100%;
    height: 450px;
@@ -20,8 +18,7 @@
 }
 
 
-.coderunner .display-area {
-   padding: 10px;	
+.coderunner .display-area {	
    width: 100%;
 }
 

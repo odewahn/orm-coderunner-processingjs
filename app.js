@@ -1,6 +1,7 @@
 (function(){
 		
    var app = angular.module('console', []);
+   var canvas_idx = 0;
 
    app.controller('CoderunnerControl', function( $scope ) {
 	
@@ -10,38 +11,9 @@
       this.control_button_label = "Run"
 
       // These are set by the directive that processes the executable code example
-      this.supported_languages = ["javascript", "coffeescript", "lua", "python", "ruby"];
-      this.error_message = ""
-      this.language = "";
       this.code = "";
       this.codemirror = null;
-      this.jqconsole = null;
-
-      // load jsrepl execution environment
-      this.jsrepl_loaded = false;
-
-      this.jsrepl = new JSREPL({  
-         input: function(callback) {
-			   handle.jqconsole.Input(function(input) {  
-				  callback(input);  
-			   });
-		    },  
-		    output: function(data) {
-		      handle.jqconsole.Write(data + "\n");
-		    },  
-		    result: function(data) {
-		      handle.jqconsole.Write(data + "\n");
-		    },  
-		    error: function(data) {
-			  handle.jqconsole.Write(data + "\n");
-		    },  
-		    progress: function() {},  
-		    timeout: {  
-		      time: 30000,  
-		      callback: function() {}  
-		    }  
-		});
-		
+      this.canvas = null;
 
 
 
@@ -57,30 +29,10 @@
 
       // Initialize the console where output is displayed
      //  Inspired by http://kapteijns.org/2014/03/21/ruby-repl-in-javascript.html
-      this.initJQConsole = function(e) {
-	     handle.jqconsole = e.jqconsole("Starting " + handle.language + " interpreter...\n", "> " );
-	     handle.startPrompt();
+      this.initCanvas = function(e) {
+         console.log("initializing canvas")
       };
 
-
-      this.promptHandler = function(input) {
-	     handle.jsrepl.eval(input);
-	     handle.startPrompt();
-      };
- 
-      
-      this.startPrompt = function() {
-	     handle.jqconsole.Prompt(true, handle.promptHandler);
-      }
-
-      // Load the given language
-      this.initJSREPL = function() {
-         handle.jsrepl.loadLanguage(handle.language, function() {
-            handle.jsrepl_loaded = true;
-		    $scope.$apply();   // force the watch to reload so that the UI gets refreshed
-		 }, true);
-
-      }
 
       // Toggle the mode between code view and output view
       this.toggleMode = function() {
@@ -88,7 +40,8 @@
 	     if (handle.mode === "editor") {
             handle.mode = "output";
             handle.control_button_label = "Edit"
-            handle.jsrepl.eval(handle.code);
+            //handle.jsrepl.eval(handle.code);
+            console.log("need to run code");
 	     } else {
             handle.mode = "editor";
             handle.control_button_label = "Run"	
@@ -107,20 +60,23 @@
 	     scope: true,
 	     templateUrl: 'coderunner.tpl',
 	     link: function(scope, element, attrs) {
-		    scope.coderunnerCtrl.language = attrs.codeLanguage;
+		    id = "_processing" + canvas_idx;
+			console.log( id );
+		    canvas_idx += 1;
 		    // Grab the original code sample that has been transcluded in
 		    code = element.find(".editor").text();
 		    // replace the div with a textarea containing the code
-		    element.find(".editor").html("<textarea>"+code+"</textarea>");
+		    element.find(".editor").html("<textarea>" + code + "</textarea>");
 		    scope.coderunnerCtrl.code = code;		
 		    scope.coderunnerCtrl.initCodemirror(element.find(".editor").find("textarea")[0]); //set up codemirror
+		    /*
 		    scope.coderunnerCtrl.initJQConsole(element.find(".output"));
 			if ($.inArray(scope.coderunnerCtrl.language, scope.coderunnerCtrl.supported_languages) > -1 ) {
 			    scope.coderunnerCtrl.initJSREPL();
 			} else {
 				scope.coderunnerCtrl.error_message = scope.coderunnerCtrl.language + " is not supported.";
 			}
-
+            */
 	     }
 	  }
    });
