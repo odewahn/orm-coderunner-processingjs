@@ -13,7 +13,8 @@
       // These are set by the directive that processes the executable code example
       this.code = "";
       this.codemirror = null;
-      this.canvas = null;
+      this.processing = null;
+      this.sketch_id = "";
 
 
 
@@ -40,8 +41,7 @@
 	     if (handle.mode === "editor") {
             handle.mode = "output";
             handle.control_button_label = "Edit"
-            //handle.jsrepl.eval(handle.code);
-            console.log("need to run code");
+            this.processing = new Processing(this.sketch_id, this.code);
 	     } else {
             handle.mode = "editor";
             handle.control_button_label = "Run"	
@@ -60,8 +60,7 @@
 	     scope: true,
 	     templateUrl: 'coderunner.tpl',
 	     link: function(scope, element, attrs) {
-		    id = "_processing" + canvas_idx;
-			console.log( id );
+		    scope.coderunnerCtrl.sketch_id = "processingjs" + canvas_idx;
 		    canvas_idx += 1;
 		    // Grab the original code sample that has been transcluded in
 		    code = element.find(".editor").text();
@@ -69,14 +68,8 @@
 		    element.find(".editor").html("<textarea>" + code + "</textarea>");
 		    scope.coderunnerCtrl.code = code;		
 		    scope.coderunnerCtrl.initCodemirror(element.find(".editor").find("textarea")[0]); //set up codemirror
-		    /*
-		    scope.coderunnerCtrl.initJQConsole(element.find(".output"));
-			if ($.inArray(scope.coderunnerCtrl.language, scope.coderunnerCtrl.supported_languages) > -1 ) {
-			    scope.coderunnerCtrl.initJSREPL();
-			} else {
-				scope.coderunnerCtrl.error_message = scope.coderunnerCtrl.language + " is not supported.";
-			}
-            */
+		    //Insert the code listing as an inline processing sketch
+		    //element.append("<script type='application/processing' data-processing-target='"+ scope.coderunnerCtrl.sketch_id + "'>" + code + "</script>");
 	     }
 	  }
    });

@@ -12,7 +12,7 @@
 
       <div class="editor" ng-show="coderunnerCtrl.mode === 'editor'" ng-transclude></div>
 
-      <canvas id="mysketch" class="output" ng-show="coderunnerCtrl.mode === 'output'"></canvas>
+      <canvas id="{{ coderunnerCtrl.sketch_id }}" class="output" ng-show="coderunnerCtrl.mode === 'output'"></canvas>
  
    </div>
   
