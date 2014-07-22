@@ -1,0 +1,25 @@
+{
+  "name": "orm-coderunner-processingjs",
+  "version": "0.0.0",
+  "description": "A simple Atlas theme for making editable processingjs sketches",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odewahn/orm-coderunner-processingjs.git"
+  },
+  "keywords": [
+    "o'reilly",
+    "atlas",
+    "theme",
+    "html"
+  ],
+  "author": "Andrew Odewahn <odewahn@oreilly.com> (http://www.odewahn.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/odewahn/orm-coderunner-processingjs/issues"
+  },
+  "homepage": "https://github.com/odewahn/orm-coderunner-processingjs"
+}
