@@ -1,6 +1,6 @@
 {
   "name": "orm-coderunner-processingjs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple Atlas theme for making editable processingjs sketches",
   "main": "app.js",
   "scripts": {
@@ -21,5 +21,5 @@
   "bugs": {
     "url": "https://github.com/odewahn/orm-coderunner-processingjs/issues"
   },
-  "homepage": "https://github.com/odewahn/orm-coderunner-processingjs"
+  "homepage": "http://odewahn.github.io/orm-coderunner-processingjs/"
 }
