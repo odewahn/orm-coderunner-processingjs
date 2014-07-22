@@ -6,21 +6,23 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'> </link>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
 
+    <!-- Bootstrap core CSS -->
+   <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css"/>
+
+
    <!-- Includes for codemirror and jsrepl -->
    <script src="theme/html/javascripts/jquery-2.1.1.min.js"></script>
    <script src="theme/html/javascripts/angular.min.js"> </script>
-   <script src="theme/html/javascripts/jqconsole.min.js"></script>
-   <script src="theme/html/javascripts/jsrepl/jsrepl.js" id="jsrepl-script"></script>
-   <script src="theme/html/javascripts/codemirror.js"></script>
-
+   <script src="theme/html/javascripts/processing.min.js"></script>
+   <script src="theme/html/javascripts/codemirror-compressed.js"></script>
 
    <!-- Includes for angular and the angular app -->
-   <script src="theme/html/app.js"></script>
+   <script src="app.js"></script>
 
    <!-- General stylesheet -->
+   <link rel="stylesheet" type="text/css" href="theme/html/stylesheets/bootstrap.min.css"/>
    <link rel="stylesheet" type="text/css" href="theme/html/stylesheets/coderunner.css"/>
    <link rel="stylesheet" type="text/css" href="theme/html/stylesheets/codemirror.css"/>
-   <link rel="stylesheet" type="text/css" href="theme/html/stylesheets/console.css"/>
    <link rel="stylesheet" type="text/css" href="theme/html/stylesheets/html.css"/>
 
 
@@ -44,10 +46,9 @@
       <div id="buttons">
         <a href="#" id="link-toc">☰</a>
       </div>
-      <img class="logo" src="http://orm-logo-service.herokuapp.com/{{ practice-area }}/logo.svg"/>
       <h1>{{ title }}</h1>
-      </header>
-      <div id="flex-box">
+    </header>
+    <div id="flex-box">
         <section id="sidebar">
           {{ toc }}
         </section>
@@ -65,5 +66,8 @@
           </section>
         </section>
       </div>
+      <footer>
+         <img class="logo" src="http://orm-logo-service.herokuapp.com/{{ practice-area }}/logo.svg"/>
+      </footer>
   </body>
 </html>
