@@ -7,13 +7,13 @@
 	
 	  // Set up some default values
       var handle = this;
-      this.mode = "editor"
-      this.control_button_label = "Run"
+      this.mode = "editor";
+      this.control_button_label = "Run";
 
       // These are set by the directive that processes the executable code example
       this.code = "";
       this.codemirror = null;
-      this.processing = null;
+      var processing = null;
       this.sketch_id = "";
 
 
@@ -40,8 +40,11 @@
          handle.code = handle.codemirror.getValue();	
 	     if (handle.mode === "editor") {
             handle.mode = "output";
-            handle.control_button_label = "Edit"
-            this.processing = new Processing(this.sketch_id, this.code);
+            handle.control_button_label = "Edit";
+            if (processing) {
+               processing.noLoop();
+            }
+            processing = new Processing(this.sketch_id, this.code);
 	     } else {
             handle.mode = "editor";
             handle.control_button_label = "Run"	
@@ -68,8 +71,6 @@
 		    element.find(".editor").html("<textarea>" + code + "</textarea>");
 		    scope.coderunnerCtrl.code = code;		
 		    scope.coderunnerCtrl.initCodemirror(element.find(".editor").find("textarea")[0]); //set up codemirror
-		    //Insert the code listing as an inline processing sketch
-		    //element.append("<script type='application/processing' data-processing-target='"+ scope.coderunnerCtrl.sketch_id + "'>" + code + "</script>");
 	     }
 	  }
    });
