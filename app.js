@@ -39,12 +39,13 @@
       // Toggle the mode between code view and output view
       this.toggleMode = function() {
          handle.code = handle.codemirror.getValue();	
+         // turn off any sketches that are running
+         if (processing) {
+            processing.noLoop();
+         }
 	     if (handle.mode === "editor") {
             handle.mode = "output";
             handle.control_button_label = "Edit";
-            if (processing) {
-               processing.noLoop();
-            }
             processing = new Processing(this.sketch_id, this.code);
 	     } else {
             handle.mode = "editor";
