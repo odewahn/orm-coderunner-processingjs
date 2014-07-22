@@ -23,7 +23,8 @@
       this.initCodemirror = function(e) {
 	     handle.codemirror = CodeMirror.fromTextArea(e, {
 			lineNumbers: true,
-			autofocus: false
+			autofocus: false,
+			mode: "text/x-java"
 		  });
       }
 
